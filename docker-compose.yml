@@ -2,18 +2,20 @@ version: '3.8'
 
 services:
   symfony:
+    # Configuration du service Symfony
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - .:/var/www/html
+      - .:/var/www/html  # Montage du répertoire courant dans le conteneur Symfony
     ports:
-      - "8080:80"
+      - "8080:80"  # Redirection du port 8080 de l'hôte vers le port 80 du conteneur Symfony
     depends_on:
       - db
-      - redis
+      - redis  # Dépendance sur les services db et redis
 
   db:
+    # Configuration du service MariaDB
     image: mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -21,14 +23,15 @@ services:
       MYSQL_USER: symfony
       MYSQL_PASSWORD: symfony
     ports:
-      - "3306:3306"
+      - "3306:3306"  # Redirection du port 3306 de l'hôte vers le port 3306 du conteneur MariaDB
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql  # Utilisation d'un volume nommé db_data pour persister les données
 
   redis:
+    # Configuration du service Redis
     image: redis:latest
     ports:
-      - "6379:6379"
+      - "6379:6379"  # Redirection du port 6379 de l'hôte vers le port 6379 du conteneur Redis
 
 volumes:
-  db_data:
+  db_data:  # Définition du volume db_data pour la persistance des données MariaDB
