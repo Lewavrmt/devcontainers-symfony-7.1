@@ -53,6 +53,4 @@ A terme de ce labs, vous pouvez supprimer le codespace créé et envoyer vos doc
 Bon courage,
 Raouf AMDOUNI
 
-
-
-
+#Modification du README pour déclencher la pipeline CI/CD, Walid MAZIZ, Azeddine MANSEUR et Julien MERAND
